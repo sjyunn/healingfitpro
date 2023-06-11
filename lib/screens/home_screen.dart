@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const twentyFiveMinutes = 1500;
+  static const twentyFiveMinutes = 1800;
   int totalSeconds = twentyFiveMinutes;
   bool isRunning = false;
   int totalPomodoros = 0;
@@ -96,6 +96,22 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  void runtimeDownPressed() {
+    setState(() {
+      if (totalSeconds > 600) {
+        totalSeconds = totalSeconds - 300;
+      }
+    });
+  }
+
+  void runtimeUpPressed() {
+    setState(() {
+      if (totalSeconds < 3000) {
+        totalSeconds = totalSeconds + 300;
+      }
+    });
+  }
+
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
     return duration.toString().split(".").first.substring(2, 7);
@@ -106,8 +122,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: const Text('HealingFit Pro'),
+        backgroundColor: Theme.of(context).cardColor,
+        title: const Text(
+          'HealingFit Pro',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
         elevation: 2,
       ),
@@ -115,16 +136,46 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Flexible(
             flex: 1,
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                format(totalSeconds),
-                style: TextStyle(
-                  color: Theme.of(context).cardColor,
-                  fontSize: 89,
-                  fontWeight: FontWeight.w600,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    isRunning ? 'TES동작중' : 'TES시작',
+                    style: TextStyle(
+                      color: Theme.of(context).canvasColor,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
-              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      iconSize: 40,
+                      color: Theme.of(context).cardColor,
+                      onPressed: runtimeDownPressed,
+                      icon: const Icon(Icons.arrow_circle_left_outlined),
+                    ),
+                    Text(
+                      format(totalSeconds),
+                      style: TextStyle(
+                        color: Theme.of(context).cardColor,
+                        fontSize: 69,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    IconButton(
+                      iconSize: 40,
+                      color: Theme.of(context).cardColor,
+                      onPressed: runtimeUpPressed,
+                      icon: const Icon(Icons.arrow_circle_right_outlined),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           Flexible(
@@ -197,8 +248,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.circular(50),
+                      color: Theme.of(context).canvasColor,
+                      borderRadius: BorderRadius.circular(30),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
