@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hfitpro/screens/manual_screen.dart';
 import 'package:hfitpro/screens/mode_screen.dart';
+import 'package:hfitpro/screens/mypage_screen.dart';
+import 'package:hfitpro/screens/review_screen.dart';
 import 'package:hfitpro/screens/time_screen.dart';
 import 'package:hfitpro/screens/strength_screen.dart';
 import 'package:hfitpro/screens/volumn_screen.dart';
@@ -160,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconSize: 40,
                       color:
                           isRunning ? Colors.grey : Theme.of(context).cardColor,
-                      onPressed: runtimeDownPressed,
+                      onPressed: isRunning ? () {} : runtimeDownPressed,
                       icon: const Icon(Icons.arrow_circle_left_outlined),
                     ),
                     Text(
@@ -175,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconSize: 40,
                       color:
                           isRunning ? Colors.grey : Theme.of(context).cardColor,
-                      onPressed: runtimeUpPressed,
+                      onPressed: isRunning ? () {} : runtimeUpPressed,
                       icon: const Icon(Icons.arrow_circle_right_outlined),
                     ),
                   ],
@@ -254,6 +257,29 @@ class _HomeScreenState extends State<HomeScreen> {
           topRight: Radius.circular(30.0),
         ),
         child: BottomNavigationBar(
+          onTap: (int index) {
+            switch (index) {
+              case 0:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ManualPage()),
+                );
+                break;
+              case 1:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyPage()),
+                );
+                break;
+              case 2:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ReviewPage()),
+                );
+                break;
+              default:
+            }
+          },
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.blue[300],
           backgroundColor: Colors.black87,
