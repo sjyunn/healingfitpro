@@ -10,6 +10,24 @@ class VolumnChange extends StatefulWidget {
 }
 
 class _VolumnChangeState extends State<VolumnChange> {
+  int volumnLovel = 7;
+
+  void volumnUpPressed() {
+    setState(() {
+      if (volumnLovel < 15) {
+        volumnLovel = volumnLovel + 1;
+      }
+    });
+  }
+
+  void volumnDownPressed() {
+    setState(() {
+      if (volumnLovel > 0) {
+        volumnLovel = volumnLovel - 1;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +39,7 @@ class _VolumnChangeState extends State<VolumnChange> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '7단계',
+            '$volumnLovel 단계',
             style: TextStyle(
               color: Theme.of(context).cardColor,
               fontSize: 69,
@@ -60,57 +78,63 @@ class _VolumnChangeState extends State<VolumnChange> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).splashColor,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 25,
+              GestureDetector(
+                onTap: volumnDownPressed,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).splashColor,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        '1단계 감소',
-                        style: TextStyle(
-                          fontSize: 18,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 25,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '1단계 감소',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_circle_down_rounded,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ],
+                        Icon(
+                          Icons.arrow_circle_down_rounded,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).highlightColor,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 25,
+              GestureDetector(
+                onTap: volumnUpPressed,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).highlightColor,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        '1단계 증가',
-                        style: TextStyle(
-                          fontSize: 18,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 25,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '1단계 증가',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_circle_up_rounded,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ],
+                        Icon(
+                          Icons.arrow_circle_up_rounded,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

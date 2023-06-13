@@ -10,6 +10,29 @@ class TimeChange extends StatefulWidget {
 }
 
 class _TimeChangeState extends State<TimeChange> {
+  int currentTime = 1800;
+
+  void runtimeDownPressed() {
+    setState(() {
+      if (currentTime > 600) {
+        currentTime = currentTime - 300;
+      }
+    });
+  }
+
+  void runtimeUpPressed() {
+    setState(() {
+      if (currentTime < 3000) {
+        currentTime = currentTime + 300;
+      }
+    });
+  }
+
+  String format(int seconds) {
+    var duration = Duration(seconds: seconds);
+    return duration.toString().split(".").first.substring(2, 7);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +44,7 @@ class _TimeChangeState extends State<TimeChange> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '30:00',
+            format(currentTime),
             style: TextStyle(
               color: Theme.of(context).cardColor,
               fontSize: 69,
@@ -55,57 +78,63 @@ class _TimeChangeState extends State<TimeChange> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 25,
+              GestureDetector(
+                onTap: runtimeDownPressed,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        '5분 감소',
-                        style: TextStyle(
-                          fontSize: 18,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 25,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '5분 감소',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_circle_down_rounded,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ],
+                        Icon(
+                          Icons.arrow_circle_down_rounded,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 25,
+              GestureDetector(
+                onTap: runtimeUpPressed,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        '5분 증가',
-                        style: TextStyle(
-                          fontSize: 18,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 25,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '5분 증가',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_circle_up_rounded,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ],
+                        Icon(
+                          Icons.arrow_circle_up_rounded,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

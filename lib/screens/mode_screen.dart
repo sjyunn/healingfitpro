@@ -10,6 +10,19 @@ class ModeChange extends StatefulWidget {
 }
 
 class _ModeChangeState extends State<ModeChange> {
+  final List<String> mymode = ['힐링 모드', '학습 모드', '수면 모드'];
+  int modeIndex = 0;
+
+  void changeModepressed() {
+    setState(() {
+      if (modeIndex == 2) {
+        modeIndex = 0;
+      } else {
+        modeIndex = modeIndex + 1;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +34,7 @@ class _ModeChangeState extends State<ModeChange> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '힐링모드',
+            mymode[modeIndex],
             style: TextStyle(
               color: Theme.of(context).cardColor,
               fontSize: 50,
@@ -52,20 +65,23 @@ class _ModeChangeState extends State<ModeChange> {
           const SizedBox(
             height: 100,
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.amber,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 25,
+          GestureDetector(
+            onTap: changeModepressed,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                borderRadius: BorderRadius.circular(30),
               ),
-              child: Text(
-                '모드 변경',
-                style: TextStyle(
-                  fontSize: 18,
+              child: const Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 25,
+                ),
+                child: Text(
+                  '모드 변경',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
             ),

@@ -10,6 +10,24 @@ class StrengthChange extends StatefulWidget {
 }
 
 class _StrengthChangeState extends State<StrengthChange> {
+  int strengthTes = 3;
+
+  void strengthUpPressed() {
+    setState(() {
+      if (strengthTes < 11) {
+        strengthTes = strengthTes + 1;
+      }
+    });
+  }
+
+  void strengthDownPressed() {
+    setState(() {
+      if (strengthTes > 0) {
+        strengthTes = strengthTes - 1;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +39,7 @@ class _StrengthChangeState extends State<StrengthChange> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '5단계',
+            '$strengthTes 단계',
             style: TextStyle(
               color: Theme.of(context).cardColor,
               fontSize: 69,
@@ -60,57 +78,63 @@ class _StrengthChangeState extends State<StrengthChange> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 25,
+              GestureDetector(
+                onTap: strengthDownPressed,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        '1단계 감소',
-                        style: TextStyle(
-                          fontSize: 18,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 25,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '1단계 감소',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_circle_down_rounded,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ],
+                        Icon(
+                          Icons.arrow_circle_down_rounded,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 25,
+              GestureDetector(
+                onTap: strengthUpPressed,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        '1단계 증가',
-                        style: TextStyle(
-                          fontSize: 18,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 25,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '1단계 증가',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_circle_up_rounded,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ],
+                        Icon(
+                          Icons.arrow_circle_up_rounded,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
