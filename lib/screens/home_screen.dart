@@ -158,7 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     IconButton(
                       iconSize: 40,
-                      color: Theme.of(context).cardColor,
+                      color:
+                          isRunning ? Colors.grey : Theme.of(context).cardColor,
                       onPressed: runtimeDownPressed,
                       icon: const Icon(Icons.arrow_circle_left_outlined),
                     ),
@@ -172,7 +173,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     IconButton(
                       iconSize: 40,
-                      color: Theme.of(context).cardColor,
+                      color:
+                          isRunning ? Colors.grey : Theme.of(context).cardColor,
                       onPressed: runtimeUpPressed,
                       icon: const Icon(Icons.arrow_circle_right_outlined),
                     ),
