@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   static const twentyFiveMinutes = 1800;
-  int totalSeconds = twentyFiveMinutes;
+  static int totalSeconds = twentyFiveMinutes;
   bool isRunning = false;
   int totalPomodoros = 0;
   late Timer timer;
@@ -74,7 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void timeChangePressed() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const TimeChange()),
+      MaterialPageRoute(
+          builder: (context) => TimeChange(receivedTime: totalSeconds)),
     );
   }
 
@@ -161,9 +162,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     IconButton(
                       iconSize: 40,
-                      color:
-                          isRunning ? Colors.grey : Theme.of(context).cardColor,
-                      onPressed: isRunning ? () {} : runtimeDownPressed,
+                      color: Theme.of(context).cardColor,
+                      onPressed: runtimeDownPressed,
                       icon: const Icon(Icons.arrow_circle_left_outlined),
                     ),
                     Text(
@@ -176,9 +176,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     IconButton(
                       iconSize: 40,
-                      color:
-                          isRunning ? Colors.grey : Theme.of(context).cardColor,
-                      onPressed: isRunning ? () {} : runtimeUpPressed,
+                      color: Theme.of(context).cardColor,
+                      onPressed: runtimeUpPressed,
                       icon: const Icon(Icons.arrow_circle_right_outlined),
                     ),
                   ],
@@ -211,12 +210,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               icon:
                                   const Icon(Icons.airline_seat_recline_normal),
                             ),
-                            IconButton(
-                              iconSize: 60,
-                              color: Theme.of(context).cardColor,
-                              onPressed: timeChangePressed,
-                              icon: const Icon(Icons.access_time),
-                            ),
+                            // IconButton(
+                            //   iconSize: 60,
+                            //   color: Theme.of(context).cardColor,
+                            //   onPressed: timeChangePressed,
+                            //   icon: const Icon(Icons.access_time),
+                            // ),
                             IconButton(
                               iconSize: 60,
                               color: Theme.of(context).cardColor,

@@ -82,7 +82,7 @@ class _VolumnChangeState extends State<VolumnChange> {
                 onTap: volumnDownPressed,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).splashColor,
+                    color: Colors.amber,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: const Padding(
@@ -112,7 +112,7 @@ class _VolumnChangeState extends State<VolumnChange> {
                 onTap: volumnUpPressed,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).highlightColor,
+                    color: Colors.amber,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: const Padding(

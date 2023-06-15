@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 class TimeChange extends StatefulWidget {
   const TimeChange({
     super.key,
+    required this.receivedTime,
   });
+  final int receivedTime;
 
   @override
   State<TimeChange> createState() => _TimeChangeState();
 }
 
 class _TimeChangeState extends State<TimeChange> {
-  int currentTime = 1800;
+  int currentTime = 0;
+  bool iscalled = true;
 
   void runtimeDownPressed() {
     setState(() {
@@ -35,6 +38,11 @@ class _TimeChangeState extends State<TimeChange> {
 
   @override
   Widget build(BuildContext context) {
+    if (iscalled) {
+      currentTime = widget.receivedTime;
+      iscalled = false;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('TES 시간 변경'),
