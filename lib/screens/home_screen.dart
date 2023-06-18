@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hfitpro/screens/btcon_screen.dart';
 import 'package:hfitpro/screens/manual_screen.dart';
 import 'package:hfitpro/screens/mode_screen.dart';
 import 'package:hfitpro/screens/mypage_screen.dart';
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static int totalSeconds = twentyFiveMinutes;
   bool isRunning = false;
   int totalPomodoros = 0;
+  String title = 'BLE Scan & Connection';
   late Timer timer;
 
   void onTick(Timer timer) {
@@ -68,6 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ModeChange()),
+    );
+  }
+
+  void contBluetoothPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BtconScreen(title: title)),
     );
   }
 
@@ -143,6 +152,20 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        iconSize: 30,
+                        color: Theme.of(context).cardColor,
+                        onPressed: contBluetoothPressed,
+                        icon: const Icon(Icons.bluetooth_searching),
+                      ),
+                    ],
+                  ),
+                ),
                 Container(
                   alignment: Alignment.bottomCenter,
                   child: Text(
